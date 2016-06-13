@@ -1,0 +1,234 @@
+<html>
+
+<head>
+<title>Pagina Principal</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no"> 
+</head>
+    
+<body>  
+<div id="cabecera"><br><img src="superman.png" id="super"><img><button onclick="lugares()" class="lugares">Lugares visitados</button>
+<br><br><br><br><br><br><br><br></div>
+<br><br><br><br><br><br><br><br><br><br>
+<div align="center">
+<button class="boton-flotante2" onclick="localizar()">Localizarme</button>
+</div><br><br><br>
+<div align="center" id="mapa"></div><br>
+<div align="center">
+<input type="text" placeholder="Nombre del lugar" id="nombre"><br><br>
+<input type="text" placeholder="Calificación del lugar" id="calificacion"><br><br>
+<input type="text" placeholder="Costos del lugar" id="costo"><br><br>
+</div><br>
+<div align="center"><button class="boton-flotante" onclick="guardar()">Guardar lugar</button></div><br><br><br>
+
+<div id="cabecera2"><br><img src="mujermaravilla.png" id="mujer"><img><button onclick="salir()" class="salir">Salir</button><br><br><br><br></div>
+
+</body>  
+</html>
+
+
+<script>
+
+     function localizar() {
+		  var output = document.getElementById("mapa");
+
+		  if (!navigator.geolocation){
+		    output.innerHTML = "<p>Tu navegador no soporta la Geolocalización</p>";
+		    return;
+		  }
+
+		  function success(position) {
+		    var latitude  = position.coords.latitude;
+		    var longitude = position.coords.longitude;
+            var localizacion = latitude + "," + longitude;
+
+           localStorage.setItem('localizacion',localizacion);
+           localStorage.setItem('latitude',latitude);
+           localStorage.setItem('longitude',longitude);
+        
+              
+            alert('La latitud es ' + latitude + ' y La longitud es ' + longitude);
+
+		    var img = new Image();
+		    img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=250x250&sensor=false";
+
+		    output.appendChild(img);
+		  };
+         function error() {
+		    output.innerHTML = "No se puede obtener su ubicación";
+		  };
+
+		  //output.innerHTML = "<p>Locatlizando...</p>";
+
+		  navigator.geolocation.getCurrentPosition(success, error);
+         }
+    
+    	  var contador=1;
+          
+    
+         function guardar(){
+             
+             localStorage.setItem('contador',contador);
+            nombre = document.getElementById('nombre').value;
+            calificacion = document.getElementById('calificacion').value;     
+            costo = document.getElementById('costo').value;
+            localizacion = localStorage.getItem('localizacion');
+            latitude = localStorage.getItem('latitude');
+            longitude = localStorage.getItem('longitude');
+    
+            contador = localStorage.getItem('contador');
+            
+            //localStorage.setItem('nombre',nombre);
+            //localStorage.setItem('calificacion',calificacion);
+            //localStorage.setItem('costo',costo);
+            //localStorage.setItem('localizacion',localizacion);
+            localStorage.setItem('nombre' + contador, nombre);
+            localStorage.setItem('calificacion' + contador, calificacion);
+            localStorage.setItem('costo' + contador, costo);
+            localStorage.setItem('localizacion' + contador, localizacion);
+            localStorage.setItem('longitude' + contador,longitude);
+            localStorage.setItem('latitude' + contador,latitude);
+           
+            contador++;
+            localStorage.setItem('contador',contador);
+        
+           }
+    
+    function lugares(){
+        if(contador>=1){
+               window.location.assign('lugares.html');
+        }else{
+            alert('No tines lugares guardados')
+        }
+    }
+
+         function salir(){
+        window.location.assign('login.html');
+    }
+    
+</script>
+
+<style>
+
+    #cabecera{
+    width: 100%;
+    height: 150px;
+    background: red;
+    color: white;
+    font-size: 1em;  
+    border-color: black;
+    float: left;
+    text-align: center;
+    }
+    
+    #cabecera2{
+    width: 100%;
+    height: 150px;
+    background: blue;
+    color: white;
+    font-size: 1em;  
+    border-color: black;
+    float: left;
+    text-align: center;
+    }
+    
+    #super{
+    height: 120px;
+    width: 80px;
+    float: center;
+    }
+    
+    #mujer{
+    height: 120px;
+    width: 80px;
+    float: center;
+    }
+    
+    #nombre{
+    background: white;
+    height: 30px;
+    width: 70%;
+    color: black;
+    font-size: 1em;
+    border-radius: 8px;
+    }
+    
+    #calificacion{
+    background: white;
+    height: 30px;
+    width: 70%;
+    color: black;
+    font-size: 1em; 
+    border-radius: 8px;
+    }
+    
+     #costo{
+    background: white;
+    height: 30px;
+    width: 70%;
+    color: black;
+    font-size: 1em; 
+    border-radius: 8px;
+    }
+    
+    .lugares{
+    height: 100px;
+    width: 100px;
+    outline: none;
+    border: 0;
+    color: white;
+    background: red;
+    font-size: 1.3em;
+    font-family: fantasy;   
+    float: left;
+        
+    }
+
+    .boton-flotante2{
+    height: 45px;
+    width: 125px;
+    border: 0;
+    margin: 0;
+    border-radius: 7px;
+    border-color: black;
+    color: white;
+    background: black;
+    font-size: 1.3em;
+    border-color: black;
+    font-family: fantasy;
+    }
+    
+    .boton-flotante{
+    height: 45px;
+    width: 160px;
+    border: 0;
+    margin: 0;
+    border-radius: 7px;
+    border-color: black;
+    color: white;
+    background: black;
+    font-size: 1.3em;
+    border-color: black;
+    font-family: fantasy;
+    }
+    
+    .boton-flotante:active{
+    -webkit-transform:scale(.9)
+    }
+    .boton-flotante2:active{
+    -webkit-transform:scale(.9)
+    }
+        .salir{
+    height: 100px;
+    width: 100px;
+    outline: none;
+    border: 0;
+    color: white;
+    background: blue;
+    font-size: 1.3em;
+    font-family: fantasy;   
+    float: right;
+        
+    }
+
+</style>

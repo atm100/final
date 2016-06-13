@@ -1,0 +1,152 @@
+<html>
+
+<head>
+<title>Registro de Usuario</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no"> 
+</head>
+    
+<body>  
+    
+<div id="cabecera"><br><img src="batman.png" id="batman"><img><br><br><br><br><br><br><br><br></div>
+<br><br><br><br><br><br><br><br><br><br><br>
+<div align="center">
+<input type="text" placeholder="Nombre" id="nombre"><br><br>
+<input type="text" placeholder="Correo" id="correo"><br><br>
+<input type="password" placeholder="Contraseña" id="password"><br><br>
+<input type="password" placeholder="Confirmación de Contraseña" id="password2"><br><br><br><br>
+
+<button class="boton-flotante" onclick="registro()" id="botonregistro">Registrar</button><br><br><br>
+<div id="cabecera2"><br><img src="robin.png" id="robin"><img><br><br><br><br></div>
+</div>
+    
+</body>  
+</html>
+
+
+<script>
+    function registro(){
+    
+        nombre = document.getElementById('nombre').value;
+        correo = document.getElementById('correo').value;
+        password = document.getElementById('password').value;
+        password2 = document.getElementById('password2').value;
+        
+        if(password!="" || nombre!="" || correo!=""){
+        if(password==password2){
+     
+        localStorage.setItem('nombre',nombre);
+        localStorage.setItem('correo',correo);
+        localStorage.setItem('password',password);
+        localStorage.setItem('password2',password2);
+        
+        window.location.assign('login.html');  
+        }else{
+        alert('¡Las contraseñas no coinciden!') 
+        }
+        }else{
+        alert('Te falta llenar algunos campos')    
+        }
+        }
+    
+
+</script>
+
+<style>
+
+    #cabecera{
+    width: 100%;
+    height: 150px;
+    background: gray;
+    color: white;
+    font-size: 1em;  
+    border-color: black;
+    float: left;
+    text-align: center;
+    }
+    
+    #cabecera2{
+    width: 100%;
+    height: 150px;
+    background: green;
+    color: white;
+    font-size: 1em;  
+    border-color: black;
+    float: left;
+    text-align: center;
+    }
+    
+    #nombre{
+    background: white;
+    height: 30px;
+    width:70%;
+    color: black;
+    font-size: 1em; 
+    border-radius: 8px;
+    }
+    
+    #correo{
+    background: white;
+    height: 30px;
+    width: 70%;
+    color: black;
+    font-size: 1em;
+    border-radius: 8px;
+    }
+    
+    #password{
+    background: white;
+    height: 30px;
+    width: 70%;
+    color: black;
+    font-size: 1em; 
+    border-radius: 8px;
+    }
+    
+    #password2{
+    background: white;
+    height: 30px;
+    width: 70%;
+    color: black;
+    font-size: 1em;  
+    border-radius: 8px;
+    }
+    
+    #robin{
+    height: 120px;
+    width: 60px; 
+    float: center;
+    }
+    
+    #batman{
+    height: 120px;
+    width: 70px;
+    float: center;
+    }
+    
+    .boton-flotante{
+    height: 45px;
+    width: 125px;
+    border: 0;
+    margin: 0;
+    border-radius: 7px;
+    border-color: black;
+    color: black;
+    background: yellow;
+    font-size: 1.3em;
+    border-color: black;
+    font-family: fantasy;
+    }
+    
+    .boton-flotante:active{
+    -webkit-transform:scale(.9)
+    }
+    
+    body{
+    background: url(fondoindex.jpg);
+    background-position: center center;
+    background-size: cover;
+   }
+
+    
+</style>

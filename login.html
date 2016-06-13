@@ -1,0 +1,123 @@
+<html>
+
+<head>
+<title>Inicio de Sesión</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no"> 
+</head>
+    
+<body>  
+<div id="cabecera"><br><img src="flash.png" id="flash"><img><br><br><br><br><br><br><br><br></div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div align="center"><input type="text" placeholder="Correo" id="correo2"><br><br>
+<input type="password" placeholder="Contraseña" id="password3"><br><br><br><br><br><br><br><br>
+<button class="boton-flotante2" onclick="iniciar()">Iniciar</button><br><br><br>
+</div>
+<div id="cabecera2"><br><img src="capitanamerica.png" id="capitan"><img><br><br><br><br></div>
+
+</body>  
+</html>
+
+<script>
+    function iniciar(){
+        correo2 = document.getElementById('correo2').value;
+        password3 = document.getElementById('password3').value;
+        var correo = localStorage.getItem("correo");
+        var password = localStorage.getItem("password");
+        //localStorage.setItem('correo2',correo2);
+        //localStorage.setItem('password3',password3);
+
+        if(password3!="" || correo2!=""){
+        if(password==password3 && correo==correo2){
+        alert('Inicio exitoso');   
+        window.location.assign('main.html'); 
+        }else if(password!=password3 && correo==correo2){
+        alert('Verifica tu contraseña');
+        }else if(password=password3 && correo!=correo2){
+        alert('Verifica tu correo');
+        }else{
+        alert('Registrate por favor');
+        window.location.assign('index.html'); 
+        }
+        }else{
+        alert('Te falta llenar algunos campos')  
+        }
+        }
+    
+</script>
+
+
+<style>
+
+    #cabecera{
+    width: 100%;
+    height: 150px;
+    background: red;
+    color: white;
+    font-size: 1em;  
+    border-color: black;
+    float: left;
+    text-align: center;
+    }
+    
+    #cabecera2{
+    width: 100%;
+    height: 150px;
+    background: blue;
+    color: white;
+    font-size: 1em;  
+    border-color: black;
+    float: left;
+    text-align: center;
+    }
+    
+    #flash{
+    height: 120px;
+    width: 80px;
+    float: center;
+    }
+    
+    #capitan{
+    height: 120px;
+    width: 80px;
+    float: center;
+    }
+    
+    #correo2{
+    background: white;
+    height: 30px;
+    width: 70%;
+    color: black;
+    font-size: 1em;
+    border-radius: 8px;
+    }
+    
+    #password3{
+    background: white;
+    height: 30px;
+    width: 70%;
+    color: black;
+    font-size: 1em; 
+    border-radius: 8px;
+    }
+
+    .boton-flotante2{
+    height: 45px;
+    width: 125px;
+    border: 0;
+    margin: 0;
+    border-radius: 7px;
+    border-color: black;
+    color: white;
+    background: yellow;
+    font-size: 1.3em;
+    border-color: black;
+    font-family: fantasy;
+    }
+    
+    .boton-flotante2:active{
+    -webkit-transform:scale(.9)
+    }
+
+</style>
+

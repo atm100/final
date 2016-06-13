@@ -1,0 +1,165 @@
+<html>
+
+<head>
+<title>Pagina Principal</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no"> 
+</head>
+    
+<body>  
+<div id="cabecera"><br><button onclick="regresar()" class="regresar">Regresar</button><img src="acertijo.png" id="acertijo"><img></div>
+<div align="center"><br><br><br><br><br><br><br><br><br>
+<div id="mapa"><br></div>
+<button onclick="mostrar()" id="mostrar">Lista</button>  
+</div>
+<br>
+
+<div id="cabecera2"><br><img src="jocker.png" id="joker"><img><button onclick="salir()" class="salir">Salir</button><br><br><br><br></div>
+
+</body>  
+</html>
+
+<script>
+    
+    function regresar(){
+        window.location.assign('main.html');
+    }
+    
+     function salir(){
+        window.location.assign('login.html');
+    }
+        contador= 1;
+    
+    function mostrar(){
+        conta =1;
+        contador = localStorage.getItem('contador');
+        var output = document.getElementById("mapa");
+ 
+		/*  if (!navigator.geolocation){
+		    output.innerHTML = "<p>Tu navegador no soporta la Geolocalización</p>";
+		    return;
+		  }
+
+		  function success(position) {
+         latitude = localStorage.getItem('latitude');
+         longitude = localStorage.getItem('longitude')
+          for(conta=1;conta<contador;conta++){
+		    var img = new Image();
+		    img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude+conta + "," + longitude+conta + "&zoom=13&size=200x200&sensor=false";
+		    output.appendChild(img);
+            //document.write("Lugar "+ conta + ": " + localStorage.getItem('nombre'+ conta) + "<br />");
+            //document.write("Calificacion: "  + localStorage.getItem('calificacion'+ conta) + "<br />");   
+            //document.write("Costo: "  + localStorage.getItem('costo'+ conta) + "<br /> <br />");
+
+          }
+		  };
+         function error() {
+		    output.innerHTML = "No se puede obtener su ubicación";
+		  };
+
+		  //output.innerHTML = "<p>Locatlizando...</p>";
+
+		  navigator.geolocation.getCurrentPosition(success, error);}*/
+        
+                  var i=1;
+                while(i<contador){
+                    mapa=document.getElementById('mapa');
+                    mapa.innerHTML += "<div class='lugar'><img id='map' src='http://maps.googleapis.com/maps/api/staticmap?center="+localStorage.getItem('localizacion'+i)+"&zoom=15&size=200x200'><n></br>"+"Lugar "+i+": "+localStorage.getItem('nombre'+i)+"</br> Costo: $"+localStorage.getItem('costo'+i)+"</br> Calificación: "+localStorage.getItem('calificacion'+i)+"</br></br></div>"
+                    i++;
+        
+                } 
+    }        
+
+</script>
+
+<style>
+
+    #cabecera{
+    width: 100%;
+    height: 150px;
+    background: purple;
+    color: white;
+    font-size: 1em;  
+    border-color: black;
+    float: left;
+    text-align: center;
+    }
+    
+    #cabecera2{
+    width: 100%;
+    height: 150px;
+    background: green;
+    color: white;
+    font-size: 1em;  
+    border-color: black;
+    float: left;
+    text-align: center;
+    }
+    
+    #joker{
+    height: 120px;
+    width: 80px;
+    float: center;
+    }
+    
+    #acertijo{
+    height: 120px;
+    width: 80px;
+    float: center;
+    }
+
+     #costo{
+    background: white;
+    height: 30px;
+    width: 70%;
+    color: black;
+    font-size: 1em; 
+    border-radius: 8px;
+         
+    }
+    .regresar{
+    height: 100px;
+    width: 100px;
+    outline: none;
+    border: 0;
+    color: white;
+    background: purple;
+    font-size: 1.3em;
+    font-family: fantasy;   
+    float: left;
+    }
+    .salir{
+    height: 100px;
+    width: 100px;
+    outline: none;
+    border: 0;
+    color: white;
+    background: green;
+    font-size: 1.3em;
+    font-family: fantasy;   
+    float: right;
+        
+    }
+    
+    #mostrar{
+    height: 45px;
+    width: 160px;
+    border: 0;
+    margin: 0;
+    border-radius: 7px;
+    border-color: black;
+    color: white;
+    background: black;
+    font-size: 1.3em;
+    border-color: black;
+    font-family: fantasy;
+    }
+    
+    #mapa{
+    font-size: 1em;
+    font-family: fantasy;   
+    color: gray;
+    }
+
+
+</style>
